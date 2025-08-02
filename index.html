@@ -44,7 +44,7 @@
         <button>Settings</button>
         <button>Exit</button>
     </div>
-    <webview id="webview" src="https://www.google.com" style="width:100%; height: calc(100vh - 90px)"></webview>
+    <webview id="webview" src="https://www.google.com" style="width:100%; height: calc(100vh - 90px)" preload="preload.js"></webview>
 
     <script>
         document.getElementById('settings-btn').addEventListener('click', () => {
@@ -66,6 +66,16 @@
         document.getElementById('refresh-btn').onclick = () => {
             webview.reload();
         };
+
+        webview.addEventListener("did-fail-load", event => {
+            const errorPage = `file://${__dirname}/templates/error.html` +
+                `?code=${encodeURIComponent(event.errorCode)}` +
+                `&desc=${encodeURIComponent(event.errorDescription)}` +
+                `&url=${encodeURIComponent(event.validatedURL)}` +
+                `&home=templates/error.html`;
+
+            webview.src = errorPage;
+        });
 
         urlInput.addEventListener('change', (e) => {
             let url = e.target.value.trim();
