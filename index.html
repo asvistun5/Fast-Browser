@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static/img/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <title>Fast</title>
+</head>
+<body>
+    <div class="titlebar">
+        <button class="browser-btn"></button>
+        <button class="tab-btn">Tab</button>
+        <button class="bookmark-btn">Bookmark</button>
+    </div>
+    <nav>
+        <button id="back-btn"><</button>
+        <button id="forward-btn">></button>
+        <button id="refresh-btn">R</button>
+        <input type="text" id="url-input" placeholder="URL">
+        <button id="settings-btn">:</button>
+    </nav>
+    <div class="settings">
+        <button>New</button>
+        <button>New tab</button>
+        <button>New window</button>
+        <button>Incognito</button>
+        <hr>
+        <button>History</button>
+        <button>Downloads</button>
+        <button>Bookmarks</button>
+        <button>Extensions</button>
+        <hr>
+        <button>Privacy</button>
+        <button>Disable trackers</button>
+        <button>Toggle JS</button>
+        <hr>
+        <button>Memory</button>
+        <button>Clear local storage</button>
+        <button>Clear cookies</button>
+        <button>Viewing device</button>
+        <hr>
+        <button>Help</button>
+        <button>Settings</button>
+        <button>Exit</button>
+    </div>
+    <webview id="webview" src="https://www.google.com" style="width:100%; height: calc(100vh - 90px)"></webview>
+
+    <script>
+        document.getElementById('settings-btn').addEventListener('click', () => {
+            document.querySelector('.settings').classList.toggle('show');
+        });
+    </script>
+    <script src="renderer.js"></script>
+    <script>
+        const { remote, session } = require('electron');
+        const webview = document.getElementById('webview');
+        const urlInput = document.getElementById('url-input');
+
+        document.getElementById('back-btn').onclick = () => {
+            if (webview.canGoBack()) webview.goBack();
+        };
+        document.getElementById('forward-btn').onclick = () => {
+            if (webview.canGoForward()) webview.goForward();
+        };
+        document.getElementById('refresh-btn').onclick = () => {
+            webview.reload();
+        };
+
+        urlInput.addEventListener('change', (e) => {
+            let url = e.target.value.trim();
+            if (!url.startsWith('http')) url = 'https://' + url;
+            webview.loadURL(url);
+        });
+
+        webview.addEventListener('did-navigate', (event) => {
+            const currentUrl = event.url;
+            urlInput.value = currentUrl;
+            document.getElementById('back-btn').disabled = !webview.canGoBack();
+            document.getElementById('forward-btn').disabled = !webview.canGoForward();
+        });
+
+        document.getElementById('settings-btn').onclick = () => {
+            document.querySelector('.settings').classList.toggle('show');
+        };
+
+        document.getElementById('incognito-btn').onclick = () => {
+            const incog = session.fromPartition(`persist:incognito-${Date.now()}`);
+            webview.loadURL('https://www.google.com', { session: incog });
+        };
+
+        let jsEnabled = true;
+        document.getElementById('toggle-js-btn').onclick = () => {
+            jsEnabled = !jsEnabled;
+            const prefs = webview.getWebPreferences();
+            prefs.javascript = jsEnabled;
+            webview.reload();
+        };
+
+        document.getElementById('clear-ls-btn').onclick = () => {
+            webview.executeJavaScript('localStorage.clear(); location.reload();');
+        };
+
+        document.getElementById('clear-cookies-btn').onclick = async () => {
+            const s = remote.session.defaultSession;
+            const cookies = await s.cookies.get({});
+            for (const c of cookies) {
+                const url = `${c.secure ? 'https' : 'http'}://${c.domain.startsWith('.') ? c.domain.slice(1) : c.domain}${c.path}`;
+                await s.cookies.remove(url, c.name);
+            }
+            webview.reload();
+        };
+    </script>
+</body>
+</html>
