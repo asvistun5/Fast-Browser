@@ -9,14 +9,29 @@ body {
     overflow: hidden;
 }
 
-.titlebar {
-    background-color: rgb(243, 243, 243);
+.center {
+    display: flex;
+    justify-content: center;
+}
 
-    width: 100%;
+.y-center {
+    display: flex;
+    align-items: center;
+}
+
+.titlebar {
+    background-color: var(--titlebar-light-bg-c);
+
+    width: calc(100% - 8px);
     height: 40px;
+    padding: 0 4px;
 
     user-select: none;
     -webkit-user-select: none;
+    gap: 8px;
+}
+
+.titlebar.drag {
     -webkit-app-region: drag;
 }
 
@@ -39,6 +54,8 @@ nav {
 nav button {
     font-size: 14px;
 
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: white;
     outline-color: rgb(55, 55, 55);
 
@@ -51,10 +68,25 @@ nav button {
     transition: all 0.3s;
 }
 
+#back-btn {
+    background-image: url('../img/back.svg');
+    background-size: 16px;
+}
+
+#forward-btn {
+    background-image: url('../img/forward.svg');
+    background-size: 16px;
+}
+
+#refresh-btn {
+    background-image: url('../img/refresh.svg');
+    background-size: 20px;
+}
+
 nav input {
     font-size: 14px;
 
-    background-color: rgb(243, 243, 243);
+    background-color: var(--urlinput-light-bg-c);
 
     width: calc(100% - 170px);
     height: 29px;
@@ -65,11 +97,11 @@ nav input {
 }
 
 nav input:focus {
-    outline: 3px solid rgb(55, 55, 55);
+    outline: 3px solid var(--urlinput-light-outl-c);
 }
 
 nav button:hover {
-    background-color: rgb(243, 243, 243);
+    background-color: var(--nav-btn-light-bg-hover-c);
 }
 
 #settings-btn {
@@ -91,11 +123,11 @@ nav button:hover {
     width: 200px;
     padding: 8px;
 
-    background-color: white;
+    background-color: var(--settings-light-bg-c);
 
     border-radius: 16px;
 
-    box-shadow: 0px 12px 17px rgba(59, 65, 75, 0.297);
+    box-shadow: 0px 12px 17px var(--settings-light-shadow-c);
 
     transition: all 0.25s;
     transform: translateY(-8px);
@@ -114,7 +146,7 @@ nav button:hover {
     font-size: 15px;
     text-align: left;
 
-    background-color: white;
+    background-color: transparent;
     outline: none;
 
     height: 32px;
@@ -127,12 +159,12 @@ nav button:hover {
 }
 
 .settings button:hover {
-    background-color: rgb(243, 243, 243);
+    background-color: var(--settings-btn-light-bg-hover-c);
 }
 
 .settings hr {
-    background-color: rgb(153, 153, 153);
-    color: rgb(153, 153, 153);
+    background-color: var(--settings-hr-light-c);
+    color: var(--settings-hr-light-c);
     
     border: none;
     border-radius: 10px;
@@ -140,4 +172,9 @@ nav button:hover {
     height: 2px;
 
     margin: 5px 0;
+}
+
+webview {
+    width:100%; 
+    height: calc(100vh - 90px);
 }

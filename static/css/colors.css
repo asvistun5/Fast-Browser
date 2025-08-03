@@ -1,0 +1,18 @@
+:root {
+    --titlebar-light-bg-c: rgb(243, 243, 243);
+    --titlebar-light-bg-hover-c: rgb(228, 228, 228);
+    --titlebar-btn-light-bg-c: white;
+    --titlebar-btn-light-bg-hover-c: rgb(220, 220, 220);
+
+
+    --nav-btn-light-bg-hover-c: rgb(243, 243, 243);
+
+    --urlinput-light-bg-c: rgb(243, 243, 243);
+    --urlinput-light-outl-c: rgb(55, 55, 55);
+    
+
+    --settings-light-bg-c: white;
+    --settings-light-shadow-c: rgba(59, 65, 75, 0.297);
+    --settings-btn-light-bg-hover-c: rgb(243, 243, 243);
+    --settings-hr-light-c: rgb(153, 153, 153);
+}

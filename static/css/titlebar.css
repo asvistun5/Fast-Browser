@@ -1,0 +1,66 @@
+.browser-btn {
+    background-image: url('../img/icon.svg');
+    background-size: 22px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--titlebar-btn-light-bg-c);
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 10px;
+
+    transition: all 0.3s;
+}
+
+.browser-btn:hover {
+    background-color: var(--titlebar-btn-light-bg-hover-c);
+}
+
+.tab-btn {
+    font-size: 14px;
+
+    background-color: var(--titlebar-btn-light-bg-c);
+
+    min-width: 100px;
+    padding: 6px 10px;
+
+    border: none;
+    border-radius: 10px;
+
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    background-color: var(--titlebar-btn-light-bg-hover-c);
+}
+
+.add-tab-btn {
+    font-size: 20px;
+
+    background-color: var(--titlebar-btn-light-bg-c);
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 20px;
+
+    transition: all 0.3s;
+}
+
+.add-tab-btn:hover {
+    background-color: var(--titlebar-btn-light-bg-hover-c);
+}
+
+.bookmark-btn {
+    font-size: 14px;
+
+    background-color: white;
+
+    padding: 5px 10px;
+
+    border: none;
+    border-radius: 20px;
+}

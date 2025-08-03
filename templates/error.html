@@ -53,5 +53,25 @@
         <span>DNS_PROBE_FINISHED_NO_INTERNET</span>
         <button>Reload</button>
     </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const errorCode = params.get('code');
+        const errorDescription = params.get('desc');
+        const failedURL = params.get('url');
+        const homePageURL = params.get('home');
+
+        const conName = document.querySelector('h2');
+        conName.textContent = `${errorCode.split('-')[1]} Connection error`;
+
+        const description = document.querySelector('span');
+        description.textContent = errorDescription;
+
+        document.title = failedURL;
+
+        const homeBtn = document.querySelector('button');
+        homeBtn.addEventListener('click', () => {
+            window.location.href = homePageURL;
+        });
+    </script>
 </body>
 </html>

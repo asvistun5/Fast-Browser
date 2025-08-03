@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="static/img/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/colors.css">
     <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/titlebar.css">
     <title>Fast</title>
 </head>
 <body>
-    <div class="titlebar">
+    <div class="titlebar drag y-center">
         <button class="browser-btn"></button>
         <button class="tab-btn">Tab</button>
+        <button class="add-tab-btn">+</button>
         <button class="bookmark-btn">Bookmark</button>
     </div>
     <nav>
-        <button id="back-btn"><</button>
-        <button id="forward-btn">></button>
-        <button id="refresh-btn">R</button>
+        <button id="back-btn"></button>
+        <button id="forward-btn"></button>
+        <button id="refresh-btn"></button>
         <input type="text" id="url-input" placeholder="URL">
         <button id="settings-btn">:</button>
     </nav>
@@ -44,82 +47,9 @@
         <button>Settings</button>
         <button>Exit</button>
     </div>
-    <webview id="webview" src="https://www.google.com" style="width:100%; height: calc(100vh - 90px)" preload="preload.js"></webview>
-
-    <script>
-        document.getElementById('settings-btn').addEventListener('click', () => {
-            document.querySelector('.settings').classList.toggle('show');
-        });
-    </script>
+    <webview id="webview" src="https://www.google.com" partition="persist:customview" useragent="Fast/1.0 (Unknown)" preload="preload.js"></webview>
+    
     <script src="renderer.js"></script>
-    <script>
-        const { remote, session } = require('electron');
-        const webview = document.getElementById('webview');
-        const urlInput = document.getElementById('url-input');
-
-        document.getElementById('back-btn').onclick = () => {
-            if (webview.canGoBack()) webview.goBack();
-        };
-        document.getElementById('forward-btn').onclick = () => {
-            if (webview.canGoForward()) webview.goForward();
-        };
-        document.getElementById('refresh-btn').onclick = () => {
-            webview.reload();
-        };
-
-        webview.addEventListener("did-fail-load", event => {
-            const errorPage = `file://${__dirname}/templates/error.html` +
-                `?code=${encodeURIComponent(event.errorCode)}` +
-                `&desc=${encodeURIComponent(event.errorDescription)}` +
-                `&url=${encodeURIComponent(event.validatedURL)}` +
-                `&home=templates/error.html`;
-
-            webview.src = errorPage;
-        });
-
-        urlInput.addEventListener('change', (e) => {
-            let url = e.target.value.trim();
-            if (!url.startsWith('http')) url = 'https://' + url;
-            webview.loadURL(url);
-        });
-
-        webview.addEventListener('did-navigate', (event) => {
-            const currentUrl = event.url;
-            urlInput.value = currentUrl;
-            document.getElementById('back-btn').disabled = !webview.canGoBack();
-            document.getElementById('forward-btn').disabled = !webview.canGoForward();
-        });
-
-        document.getElementById('settings-btn').onclick = () => {
-            document.querySelector('.settings').classList.toggle('show');
-        };
-
-        document.getElementById('incognito-btn').onclick = () => {
-            const incog = session.fromPartition(`persist:incognito-${Date.now()}`);
-            webview.loadURL('https://www.google.com', { session: incog });
-        };
-
-        let jsEnabled = true;
-        document.getElementById('toggle-js-btn').onclick = () => {
-            jsEnabled = !jsEnabled;
-            const prefs = webview.getWebPreferences();
-            prefs.javascript = jsEnabled;
-            webview.reload();
-        };
-
-        document.getElementById('clear-ls-btn').onclick = () => {
-            webview.executeJavaScript('localStorage.clear(); location.reload();');
-        };
-
-        document.getElementById('clear-cookies-btn').onclick = async () => {
-            const s = remote.session.defaultSession;
-            const cookies = await s.cookies.get({});
-            for (const c of cookies) {
-                const url = `${c.secure ? 'https' : 'http'}://${c.domain.startsWith('.') ? c.domain.slice(1) : c.domain}${c.path}`;
-                await s.cookies.remove(url, c.name);
-            }
-            webview.reload();
-        };
-    </script>
+    <script src="static/js/titlebar.js"></script>
 </body>
 </html>
