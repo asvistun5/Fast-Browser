@@ -1,4 +1,4 @@
-<div style=""><img src="static/demo/cover.png" width="600"/></div>
+<div style=""><img src="static/demo/cover.png" width="800"/></div>
 
 # Fast
 
