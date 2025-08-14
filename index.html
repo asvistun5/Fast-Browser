@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="static/css/colors.css">
     <link rel="stylesheet" href="static/css/styles.css">
     <link rel="stylesheet" href="static/css/titlebar.css">
+    <link rel="stylesheet" href="static/css/context-menu.css">
     <title>Fast</title>
 </head>
 <body>
     <div class="titlebar drag y-center">
         <button class="browser-btn"></button>
-        <button class="tab-btn">Tab</button>
-        <button class="add-tab-btn">+</button>
-        <button class="bookmark-btn">Bookmark</button>
+        <div class="tabs-list">
+            <button class="tab-btn">Tab</button>
+            <button class="add-tab-btn">+</button>
+            <button class="bookmark-btn">Bookmark</button>
+        </div>
+        <div class="window-ctrl-btns windows center">
+            <button id="minimize" title="Minimize">—</button>
+            <button id="restore" title="Restore">▢</button>
+            <button id="close" title="Close">╳</button>
+        </div>
     </div>
     <nav>
         <button id="back-btn"></button>
@@ -27,7 +35,7 @@
         <button>New</button>
         <button>New tab</button>
         <button>New window</button>
-        <button>Incognito</button>
+        <button id="incognito-btn">Incognito</button>
         <hr>
         <button>History</button>
         <button>Downloads</button>
@@ -36,20 +44,26 @@
         <hr>
         <button>Privacy</button>
         <button>Disable trackers</button>
-        <button>Toggle JS</button>
+        <button id="toggle-js-btn">Toggle JS</button>
         <hr>
         <button>Memory</button>
-        <button>Clear local storage</button>
-        <button>Clear cookies</button>
+        <button id="clear-ls-btn">Clear local storage</button>
+        <button id="clear-cookies-btn">Clear cookies</button>
         <button>Viewing device</button>
         <hr>
         <button>Help</button>
         <button>Settings</button>
         <button>Exit</button>
     </div>
-    <webview id="webview" src="https://www.google.com" partition="persist:customview" useragent="Fast/1.0 (Unknown)" preload="preload.js"></webview>
+    <webview id="webview" src="https://www.google.com" partition="persist:customview" preload="preload.js"></webview>
     
+    <div class="context-menu">
+        <button>Copy</button>
+        <button>Paste</button>
+    </div>
+
     <script src="renderer.js"></script>
-    <script src="static/js/titlebar.js"></script>
+    <!--<script src="static/js/titlebar.js"></script>-->
+    <script src="static/js/menu.js"></script>
 </body>
 </html>

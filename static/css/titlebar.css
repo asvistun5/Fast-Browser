@@ -3,7 +3,7 @@
     background-size: 22px;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: var(--titlebar-btn-light-bg-c);
+    background-color: var(--titlebar-btn-bg-c);
 
     width: 34px;
     height: 34px;
@@ -15,16 +15,20 @@
 }
 
 .browser-btn:hover {
-    background-color: var(--titlebar-btn-light-bg-hover-c);
+    background-color: var(--titlebar-btn-bg-hover-c);
+}
+
+.tabs-list {
+    width: calc(100% - (42px + 126px));
 }
 
 .tab-btn {
     font-size: 14px;
 
-    background-color: var(--titlebar-btn-light-bg-c);
+    background-color: var(--titlebar-btn-bg-c);
 
     min-width: 100px;
-    padding: 6px 10px;
+    padding: 7px 10px;
 
     border: none;
     border-radius: 10px;
@@ -33,13 +37,13 @@
 }
 
 .tab-btn:hover {
-    background-color: var(--titlebar-btn-light-bg-hover-c);
+    background-color: var(--titlebar-btn-bg-hover-c);
 }
 
 .add-tab-btn {
     font-size: 20px;
 
-    background-color: var(--titlebar-btn-light-bg-c);
+    background-color: var(--titlebar-btn-bg-c);
 
     width: 30px;
     height: 30px;
@@ -51,7 +55,7 @@
 }
 
 .add-tab-btn:hover {
-    background-color: var(--titlebar-btn-light-bg-hover-c);
+    background-color: var(--titlebar-btn-bg-hover-c);
 }
 
 .bookmark-btn {
@@ -59,8 +63,32 @@
 
     background-color: white;
 
-    padding: 5px 10px;
+    padding: 7px 10px;
 
     border: none;
     border-radius: 20px;
+}
+
+.window-ctrl-btns {
+    overflow: hidden;
+    gap: 0;
+}
+
+.window-ctrl-btns button {
+    border: none;
+
+    transition: all 0.2s;
+}
+
+.window-ctrl-btns.windows button {
+    font-size: 10px;
+
+    background-color: transparent;
+
+    width: 42px;
+    height: 42px;
+}
+
+.window-ctrl-btns.windows button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }

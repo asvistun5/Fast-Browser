@@ -1,4 +1,4 @@
-const { app, BrowserWindow, session } = require('electron');
+const { app, BrowserWindow, session, ipcMain } = require('electron');
 const { ElectronBlocker } = require('@ghostery/adblocker-electron');
 const fetch = require('cross-fetch');
 const path = require('path');
@@ -32,6 +32,35 @@ app.whenReady().then( async () => {
   }
 
   createWindow();
+
+  ipcMain.on('triggerEmojiBtn', () => {
+      const os = process.platform;
+
+      if (os === 'win32') {
+          console.log('emoji button');
+      } else if (os === 'darwin') {
+          //pass
+      }
+  });
+
+  let maximizeToggle = false;
+  
+  ipcMain.on("manualMinimize", () => {
+      mainWin.minimize();
+  });
+  
+  ipcMain.on("manualMaximize", () => {
+    if (maximizeToggle) {
+        mainWin.unmaximize(); 
+    } else {
+        mainWin.maximize(); 
+    }
+    maximizeToggle = !maximizeToggle;
+  });
+  
+  ipcMain.on("manualClose", () => {
+    app.quit();
+  });
 });
 
 app.on('window-all-closed', () => {

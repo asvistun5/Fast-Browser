@@ -20,7 +20,7 @@ body {
 }
 
 .titlebar {
-    background-color: var(--titlebar-light-bg-c);
+    background-color: var(--titlebar-bg-c);
 
     width: calc(100% - 8px);
     height: 40px;
@@ -35,7 +35,7 @@ body {
     -webkit-app-region: drag;
 }
 
-.titlebar * {
+.titlebar button {
     -webkit-app-region: no-drag;
 }
 
@@ -86,7 +86,7 @@ nav button {
 nav input {
     font-size: 14px;
 
-    background-color: var(--urlinput-light-bg-c);
+    background-color: var(--urlinput-bg-c);
 
     width: calc(100% - 170px);
     height: 29px;
@@ -97,11 +97,11 @@ nav input {
 }
 
 nav input:focus {
-    outline: 3px solid var(--urlinput-light-outl-c);
+    outline: 3px solid var(--urlinput-outl-c);
 }
 
 nav button:hover {
-    background-color: var(--nav-btn-light-bg-hover-c);
+    background-color: var(--nav-btn-bg-hover-c);
 }
 
 #settings-btn {
@@ -123,11 +123,11 @@ nav button:hover {
     width: 200px;
     padding: 8px;
 
-    background-color: var(--settings-light-bg-c);
+    background-color: var(--settings-bg-c);
 
     border-radius: 16px;
 
-    box-shadow: 0px 12px 17px var(--settings-light-shadow-c);
+    box-shadow: 0px 12px 17px var(--settings-shadow-c);
 
     transition: all 0.25s;
     transform: translateY(-8px);
@@ -159,12 +159,12 @@ nav button:hover {
 }
 
 .settings button:hover {
-    background-color: var(--settings-btn-light-bg-hover-c);
+    background-color: var(--settings-btn-bg-hover-c);
 }
 
 .settings hr {
-    background-color: var(--settings-hr-light-c);
-    color: var(--settings-hr-light-c);
+    background-color: var(--settings-hr-c);
+    color: var(--settings-hr-c);
     
     border: none;
     border-radius: 10px;

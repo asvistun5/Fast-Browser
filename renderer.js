@@ -1,9 +1,38 @@
+document.addEventListener('DOMContentLoaded', () => {   
         const { remote, session } = require('electron');
         const webview = document.getElementById('webview');
         const urlInput = document.getElementById('url-input');
         const doc = document;
 
-        doc.getElementById('settings-btn').addEventListener('click', () => {
+        const minimizeBtn = document.getElementById('minimize');
+        const restoreBtn = document.getElementById('restore');
+        const closeBtn = document.getElementById('close');
+        
+        let maximizeToggle = false;
+        let minimizeToggle = false;
+        
+        minimizeBtn.addEventListener('click', () => {
+          ipcRenderer.send('manualMinimize');
+        });
+        
+        restoreBtn.addEventListener('click', () => {
+            if (maximizeToggle) {
+                restoreBtn.textContent = '▢';
+            } else {
+                restoreBtn.textContent = '❐';
+            }
+            ipcRenderer.send('manualMaximize');
+            maximizeToggle = !maximizeToggle;
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            ipcRenderer.send('manualClose');
+        });
+
+        const settingsBtn = doc.getElementById('settings-btn');
+
+
+        settingsBtn.addEventListener('click', () => {
             doc.querySelector('.settings').classList.toggle('show');
         });
 
@@ -75,3 +104,4 @@
             }
             webview.reload();
         };
+});
