@@ -2,7 +2,7 @@
 
 # Fast
 
-**Fast** is a browser built with **Electron.js**, featuring an integrated ad blocker and a strong focus on user privacy for a cleaner, more secure browsing experience.
+**Fast** is a mini browser built with **Electron.js**, featuring an integrated ad blocker and a strong focus on user privacy for a cleaner, more secure browsing experience.
 
 ## Features
 - Built using **Electron.js** for fast performance
@@ -46,4 +46,4 @@ npm start
 
 ### License
 
-Fast Browser is open-source software licensed under the MIT License.
+Fast Browser is open-source software licensed under the GPL License.
