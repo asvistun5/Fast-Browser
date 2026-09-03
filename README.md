@@ -1,4 +1,4 @@
-<div style="border-radius: 9px;"><img src="static/demo/cover.png" width="800"/></div>
+<div style="border-radius: 9px;"><img src="src/static/demo/cover.png" width="800"/></div>
 
 # Noct
 
