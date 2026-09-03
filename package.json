@@ -1,16 +1,19 @@
 {
-  "name": "fast",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "author": "fast",
-  "license": "ISC",
-  "dependencies": {
-    "@ghostery/adblocker-electron": "^2.5.0",
-    "cross-fetch": "^4.1.0",
-    "robotjs": "^0.6.0"
-  }
+    "displayName": "Noct",
+    "name": "noct",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "type": "module",
+    "scripts": {
+        "start": "electron ."
+    },
+    "author": "fast",
+    "license": "ISC",
+    "dependencies": {
+        "@ghostery/adblocker-electron": "^2.5.0",
+        "cross-fetch": "^4.1.0",
+        "dotenv": "^17.4.2",
+        "robotjs": "^0.6.0"
+    }
 }

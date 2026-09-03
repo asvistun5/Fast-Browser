@@ -1,3 +1,5 @@
 node_modules/
 static/img/icon.png
 static/img/icon.svg
+package-lock.json
+*.env

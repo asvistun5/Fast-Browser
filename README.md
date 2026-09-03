@@ -1,8 +1,8 @@
-<div style=""><img src="static/demo/cover.png" width="800"/></div>
+<div style="border-radius: 9px;"><img src="static/demo/cover.png" width="800"/></div>
 
-# Fast
+# Noct
 
-**Fast** is a mini browser built with **Electron.js**, featuring an integrated ad blocker and a strong focus on user privacy for a cleaner, more secure browsing experience.
+**Noct** is a mini browser built with **Electron.js**, featuring an integrated ad blocker and a strong focus on user privacy for a cleaner, more secure browsing experience.
 
 ## Features
 - Built using **Electron.js** for fast performance
@@ -10,20 +10,20 @@
 - Simple, fast, and responsive UI
 
 ## Requirements
-Before setting up **Fast Browser**, ensure you have the following installed on your local machine:
+Before setting up **Noct Browser**, ensure you have the following installed on your local machine:
 - **Node.js** (v14 or higher)
 - **npm** (Node Package Manager)
 
 ## Setup and Installation
 
-Follow the steps below to run **Fast Browser** on your local computer.
+Follow the steps below to run **Noct Browser** on your local computer.
 
 ### 1. Clone the repository
 
 First, clone the repository to your local machine using Git:
 
 ```bash
-git clone https://github.com/asvistun5/Fast-Browser.git
+git clone https://github.com/asvistun5/Noct-Browser.git
 ```
 
 2. Navigate to the project folder
@@ -46,4 +46,4 @@ npm start
 
 ### License
 
-Fast Browser is open-source software licensed under the GPL License.
+Noct Browser is open-source software licensed under the GPL License.

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="static/css/styles.css">
     <link rel="stylesheet" href="static/css/titlebar.css">
     <link rel="stylesheet" href="static/css/context-menu.css">
-    <title>Fast</title>
+    <title>Noct</title>
 </head>
 <body>
     <div class="titlebar drag y-center">
@@ -56,13 +56,9 @@
         <button>Exit</button>
     </div>
     <webview id="webview" src="https://www.google.com" partition="persist:customview" preload="preload.js"></webview>
-    
-    <div class="context-menu">
-        <button>Copy</button>
-        <button>Paste</button>
-    </div>
 
-    <script src="renderer.js"></script>
+    <script src="browser/default/render.js"></script>
+    <script src="static/js/libs/ently.js"></script>
     <!--<script src="static/js/titlebar.js"></script>-->
     <script src="static/js/menu.js"></script>
 </body>
