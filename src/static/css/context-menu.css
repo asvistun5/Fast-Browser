@@ -39,12 +39,16 @@
     border-radius: 10px;
     outline: none;
 
-    transition: all 0.15s;
+    transition: all 0.1s;
 }
 
 .context-menu button:hover {
     color: var(--menu-btn-hover-c);
     background-color: var(--menu-btn-hover-bg-c);
+}
+
+.context-menu button[disabled] {
+    color: var(--menu-btn-disabled-c);
 }
 
 .context-menu hr {

@@ -9,6 +9,12 @@ body {
     overflow: hidden;
 }
 
+button:focus-visible {
+    background-color: var(--nav-btn-bg-hover-c);
+    border: 1px solid rgb(55, 55, 55);
+    outline: 2px solid rgb(55, 55, 55);
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -176,5 +182,5 @@ nav button:hover {
 
 webview {
     width:100%; 
-    height: calc(100vh - 90px);
+    height: calc(100vh - 94px);
 }

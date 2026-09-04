@@ -13,14 +13,10 @@ minimizeBtn.addEventListener('click', () => {
     window.api.min();
 });
 
-restoreBtn.addEventListener('click', () => {
-    if (maximizeToggle) {
-        restoreBtn.textContent = '▢';
-    } else {
-        restoreBtn.textContent = '❐';
-    }
-    window.api.max();
-    maximizeToggle = !maximizeToggle;
+restoreBtn.addEventListener('click', async () => {
+    const isMax = await window.api.max();
+    
+    restoreBtn.textContent = isMax ? '❐' : '▢';
 });
 
 closeBtn.addEventListener('click', () => {

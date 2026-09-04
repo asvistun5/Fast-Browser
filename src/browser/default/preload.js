@@ -2,12 +2,12 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
     min() {
-        ipcRenderer.send('minimize');
+        ipcRenderer.send('win:min');
     },
     max() {
-        ipcRenderer.send('maximize');
+        ipcRenderer.invoke('win:max');
     },
     close() {
-        ipcRenderer.send('close');
+        ipcRenderer.send('win:close');
     },
 });

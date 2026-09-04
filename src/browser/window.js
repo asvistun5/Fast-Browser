@@ -1,12 +1,11 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
+import { setupBlocker } from './default/security.js';
 
 import dotenv from 'dotenv';
 import { find } from './utils.js';
 
 import { getBlinkMemoryInfo } from 'process';
 import { isBigIntObject } from 'util/types';
-
-import { ElectronBlocker } from '@ghostery/adblocker-electron';
 
 dotenv.config();
 
@@ -44,12 +43,28 @@ export function createWindow({ url, icon, preload } = {}) {
 
     if (debug) win.webContents.openDevTools();
 
-    win.on('minimize', () => {
+    /*win.on('minimize', () => {
         win.loadURL('about:blank');
     });
 
     win.on('restore', () => {
         win.loadFile(find('..', 'index.html'));
+    });*/
+
+    ipcMain.on('win:min', e => {
+        win.minimize();
+    });
+
+    ipcMain.handle('win:max', e => {
+        const isMax = win.isMaximized();
+
+        isMax ? win.unmaximize() : win.maximize();
+
+        return isMax;
+    });
+
+    ipcMain.on('win:close', e => {
+        win.close();
     });
 
     return win;
@@ -57,7 +72,9 @@ export function createWindow({ url, icon, preload } = {}) {
 
 export function startApp(start, controller) {
     app.setName('Noct');
-    app.whenReady().then(() => {
+    app.whenReady().then(async () => {
+        await setupBlocker();
+
         const win = start();
         controller(ipcMain, win);
     });

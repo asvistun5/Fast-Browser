@@ -55,10 +55,11 @@
         <button>Settings</button>
         <button>Exit</button>
     </div>
-    <webview id="webview" src="https://www.google.com" partition="persist:customview" preload="preload.js"></webview>
+    <webview id="webview" src="https://www.google.com" partition="persist:guest" preload="browser/view/preload.js"></webview>
 
-    <script src="browser/default/render.js"></script>
     <script src="static/js/libs/ently.js"></script>
+    <script src="static/js/data.js"></script>
+    <script src="browser/default/render.js"></script>
     <!--<script src="static/js/titlebar.js"></script>-->
     <script src="static/js/menu.js"></script>
 </body>
