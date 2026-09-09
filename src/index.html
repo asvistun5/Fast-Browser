@@ -12,11 +12,11 @@
 </head>
 <body>
     <div class="titlebar drag y-center">
-        <button class="browser-btn"></button>
+        <button class="browser-btn ripple"></button>
         <div class="tabs-list">
-            <button class="tab-btn">Tab</button>
-            <button class="add-tab-btn">+</button>
-            <button class="bookmark-btn">Bookmark</button>
+            <button class="tab-btn ripple">Tab</button>
+            <button class="add-tab-btn ripple">+</button>
+            <button class="bookmark-btn ripple">Bookmark</button>
         </div>
         <div class="window-ctrl-btns windows center">
             <button id="minimize" title="Minimize">—</button>
@@ -25,11 +25,13 @@
         </div>
     </div>
     <nav>
-        <button id="back-btn"></button>
-        <button id="forward-btn"></button>
-        <button id="refresh-btn"></button>
-        <input type="text" id="url-input" placeholder="URL">
-        <button id="settings-btn">:</button>
+        <button id="back-btn" class="ripple"></button>
+        <button id="forward-btn" class="ripple"></button>
+        <button id="refresh-btn" class="ripple"></button>
+        <div class="searchbox y-center ripple">
+            <input type="text" placeholder="URL">
+        </div>
+        <button id="settings-btn" class="ripple">:</button>
     </nav>
     <div class="settings">
         <button>New</button>
@@ -55,10 +57,15 @@
         <button>Settings</button>
         <button>Exit</button>
     </div>
-    <webview id="webview" src="https://www.google.com" partition="persist:guest" preload="browser/view/preload.js"></webview>
+    
+    <main>
+        <webview id="webview" src="https://www.google.com" partition="persist:guest" preload="browser/view/preload.js"></webview>
+    </main>
 
     <script src="static/js/libs/ently.js"></script>
+    <script src="static/js/libs/ripple.js"></script>
     <script src="static/js/data.js"></script>
+    <script src="static/js/tabs.js"></script>
     <script src="browser/default/render.js"></script>
     <!--<script src="static/js/titlebar.js"></script>-->
     <script src="static/js/menu.js"></script>

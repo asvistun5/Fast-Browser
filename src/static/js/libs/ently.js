@@ -16,6 +16,28 @@ function $a(context, selector) {
     return context.querySelectorAll(selector);
 }
 
+Element.prototype.on = function(events, callback, options) {
+    events.split(' ').forEach(event => {
+        this.addEventListener(event, callback, options);
+    });
+
+    return this;
+};
+
+Element.prototype.clone = function(deep = true) {
+    return this.cloneNode(deep);
+};
+
+Element.prototype.hide = function() {
+    this.style.display = 'none';
+    return this;
+}
+
+Element.prototype.show = function() {
+    this.style.display = '';
+    return this;
+}
+
 function render(html) {
     const voidTags = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
 

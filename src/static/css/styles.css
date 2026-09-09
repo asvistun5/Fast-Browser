@@ -9,6 +9,10 @@ body {
     overflow: hidden;
 }
 
+button, input {
+    outline: none;
+}
+
 button:focus-visible {
     background-color: var(--nav-btn-bg-hover-c);
     border: 1px solid rgb(55, 55, 55);
@@ -89,21 +93,28 @@ nav button {
     background-size: 20px;
 }
 
-nav input {
-    font-size: 14px;
-
+.searchbox {
     background-color: var(--urlinput-bg-c);
 
     width: calc(100% - 170px);
     height: 29px;
     padding: 2px 10px;
 
-    border: none;
     border-radius: 20px;
+    outline: 3px solid transparent;
+
+    transition: all 0.3s;
 }
 
-nav input:focus {
-    outline: 3px solid var(--urlinput-outl-c);
+.searchbox:focus-within {
+    outline-color: var(--urlinput-outl-c);
+}
+
+.searchbox input {
+    flex: 1;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
 }
 
 nav button:hover {
@@ -183,4 +194,25 @@ nav button:hover {
 webview {
     width:100%; 
     height: calc(100vh - 94px);
+}
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    background-color: rgba(0, 0, 0, 0.24);
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+      transform: scale(5);
+      opacity: 0;
+    }
 }

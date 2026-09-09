@@ -2,9 +2,30 @@ let menu = browser.menu;
 
 function ContextMenu(e, btns = ['Cut', 'Copy', 'Paste'], callback = () => {}) {
     if (menu) {
-        menu.innerHTML = btns.map(btn => `<button class="${btn.toLowerCase()}-btn">${btn}</button>`).join('');
+        menu.innerHTML = btns.map(btn => {
+            const name = typeof btn === 'string' ? btn : btn.name;
+            const disabled = typeof btn === 'object' && btn.disabled;
+
+            return `<button
+                class="${name.toLowerCase()}-btn"
+                ${disabled ? 'disabled' : ''}
+            >${name}</button>`;
+        }).join('');
     } else {
-        menu = elem(`<div class="context-menu">${btns.map(btn => `<button class="${btn.toLowerCase()}-btn">${btn}</button>`).join('')}</div>`);
+        menu = elem(`
+            <div class="context-menu">
+                ${btns.map(btn => {
+                    const name = typeof btn === 'string' ? btn : btn.name;
+                    const disabled = typeof btn === 'object' && btn.disabled;
+
+                    return `<button
+                        class="${name.toLowerCase()}-btn"
+                        ${disabled ? 'disabled' : ''}
+                    >${name}</button>`;
+                }).join('')}
+            </div>
+        `);
+
         dom.body.appendChild(menu);
     }
 
@@ -91,7 +112,7 @@ webview.addEventListener('ipc-message', e => {
 
         menu = ContextMenu(
             { x, y },
-            ['Back', 'Forward', 'Reload', 'Inspect'],
+            [{ name: 'Back', disabled: !webview.canGoBack() }, { name: 'Forward', disabled: !webview.canGoForward() }, { name: 'Reload' }, { name: 'Inspect' }],
             btn => {
                 if (btn === 'back') {
                     webview.goBack();

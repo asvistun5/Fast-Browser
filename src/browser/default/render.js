@@ -1,5 +1,5 @@
 const webview = document.getElementById('webview');
-const urlInput = document.getElementById('url-input');
+const urlInput = document.querySelector('.searchbox input');
 const doc = document;
 
 const minimizeBtn = document.getElementById('minimize');

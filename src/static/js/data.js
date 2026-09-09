@@ -1,4 +1,8 @@
 const browser = {
     view: $('webview'),
+    tabs: $('.tabs-list'),
+    main: $('main'),
+    addTab: $('.add-tab-btn'),
     menu: $('.context-menu'),
+    agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36'
 }
