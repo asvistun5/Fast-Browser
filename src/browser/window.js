@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-import { setupBlocker } from './default/security.js';
+import { setupBlocker } from '../security/block.js';
 
 import dotenv from 'dotenv';
 import { find } from './utils.js';

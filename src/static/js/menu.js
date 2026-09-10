@@ -1,24 +1,28 @@
-let menu = browser.menu;
+import { browser } from './data.js';
 
-function ContextMenu(e, btns = ['Cut', 'Copy', 'Paste'], callback = () => {}) {
+let menu = null;
+
+export function ContextMenu(e, btns = ['Cut', 'Copy', 'Paste'], callback = () => {}) {
     if (menu) {
         menu.innerHTML = btns.map(btn => {
-            const name = typeof btn === 'string' ? btn : btn.name;
+            const name = typeof btn === 'string' ? btn === '-' ? '<hr>' : btn : btn.name;
             const disabled = typeof btn === 'object' && btn.disabled;
 
-            return `<button
+            const html = name === '<hr>' ? '<hr>' : `<button
                 class="${name.toLowerCase()}-btn"
                 ${disabled ? 'disabled' : ''}
             >${name}</button>`;
+
+            return html;
         }).join('');
     } else {
         menu = elem(`
             <div class="context-menu">
                 ${btns.map(btn => {
-                    const name = typeof btn === 'string' ? btn : btn.name;
+                    const name = typeof btn === 'string' ? btn === '-' ? '<hr>' : btn : btn.name;
                     const disabled = typeof btn === 'object' && btn.disabled;
 
-                    return `<button
+                    const html = name === '<hr>' ? '<hr>' : `<button
                         class="${name.toLowerCase()}-btn"
                         ${disabled ? 'disabled' : ''}
                     >${name}</button>`;
@@ -92,9 +96,10 @@ function ContextMenu(e, btns = ['Cut', 'Copy', 'Paste'], callback = () => {}) {
 dom.body.addEventListener('contextmenu', e => {
     e.preventDefault();
 
-    menu = ContextMenu(e);
-
-    menu.show();
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        menu = ContextMenu(e);
+        menu.show();
+    }
 });
 
 dom.addEventListener('click', e => {
@@ -109,10 +114,19 @@ webview.addEventListener('ipc-message', e => {
 
         const x = rect.left + data.coords.x;
         const y = rect.top + data.coords.y;
+        const type = data.type;
+
+        let listBtn;
+
+        if (type === 'input') {
+            listBtn = ['Cut', 'Copy', 'Paste', '-', { name: 'Inspect' }];
+        } else {
+            listBtn = [{ name: 'Back', disabled: !webview.canGoBack() }, { name: 'Forward', disabled: !webview.canGoForward() }, { name: 'Reload' }, '-', { name: 'Inspect' }];
+        }
 
         menu = ContextMenu(
             { x, y },
-            [{ name: 'Back', disabled: !webview.canGoBack() }, { name: 'Forward', disabled: !webview.canGoForward() }, { name: 'Reload' }, { name: 'Inspect' }],
+            listBtn,
             btn => {
                 if (btn === 'back') {
                     webview.goBack();

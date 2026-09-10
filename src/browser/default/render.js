@@ -1,3 +1,5 @@
+import { browser } from "../../static/js/data.js";
+
 const webview = document.getElementById('webview');
 const urlInput = document.querySelector('.searchbox input');
 const doc = document;
@@ -55,15 +57,19 @@ webview.addEventListener('did-fail-load', event => {
     webview.src = errorPage;
 });
 
-urlInput.addEventListener('change', e => {
-    let url = e.target.value.trim();
-    if (!url.startsWith('http')) url = 'https://' + url;
-    webview.loadURL(url);
+urlInput.on('focus', e => {
+    setTimeout(() => {
+        urlInput.select();
+    }, 80);
 });
 
-webview.addEventListener('did-navigate', event => {
-    const currentUrl = event.url;
-    urlInput.value = currentUrl;
+urlInput.on('change', e => {
+    browser.setURL(e.target.value);
+});
+
+webview.on('did-navigate', e => {
+    const currentUrl = e.url;
+    urlInput.value = browser.setURL(currentUrl, false);
     document.getElementById('back-btn').disabled = !webview.canGoBack();
     document.getElementById('forward-btn').disabled = !webview.canGoForward();
 });

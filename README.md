@@ -6,7 +6,7 @@
 
 ## Features
 - Built using **Electron.js** for fast performance
-- **Integrated Adblocker** to block intrusive ads
+- **Integrated security engine** to protect user
 - Simple, fast, and responsive UI
 
 ## Requirements
@@ -23,10 +23,10 @@ Follow the steps below to run **Noct Browser** on your local computer.
 First, clone the repository to your local machine using Git:
 
 ```bash
-git clone https://github.com/asvistun5/Noct-Browser.git
+git clone https://github.com/asvistun5/Fast-Browser.git
 ```
 
-2. Navigate to the project folder
+2. Go to the project folder
 
 ```bash
 cd fast-browser

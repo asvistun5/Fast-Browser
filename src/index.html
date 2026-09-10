@@ -14,7 +14,7 @@
     <div class="titlebar drag y-center">
         <button class="browser-btn ripple"></button>
         <div class="tabs-list">
-            <button class="tab-btn ripple">Tab</button>
+            <button class="tab-btn ripple" data-tab="1">Tab</button>
             <button class="add-tab-btn ripple">+</button>
             <button class="bookmark-btn ripple">Bookmark</button>
         </div>
@@ -59,15 +59,15 @@
     </div>
     
     <main>
-        <webview id="webview" src="https://www.google.com" partition="persist:guest" preload="browser/view/preload.js"></webview>
+        <webview id="webview" src="https://www.google.com" useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36" partition="persist:guest" preload="browser/view/preload.js"></webview>
     </main>
 
     <script src="static/js/libs/ently.js"></script>
     <script src="static/js/libs/ripple.js"></script>
-    <script src="static/js/data.js"></script>
-    <script src="static/js/tabs.js"></script>
-    <script src="browser/default/render.js"></script>
+    <script type="module" src="browser/default/render.js"></script>
+    <script type="module" src="static/js/data.js"></script>
+    <script type="module" src="static/js/tabs.js"></script>
+    <script type="module" src="static/js/menu.js"></script>
     <!--<script src="static/js/titlebar.js"></script>-->
-    <script src="static/js/menu.js"></script>
 </body>
 </html>
