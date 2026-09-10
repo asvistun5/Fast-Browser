@@ -2,7 +2,7 @@
 
 # Noct
 
-**Noct** is a mini browser built with **Electron.js**, featuring an integrated ad blocker and a strong focus on user privacy for a cleaner, more secure browsing experience.
+**Noct** - compact browser built with **Electron.js**, featuring an integrated security engine and a strong focus on privacy for a cleaner, more secure browsing experience.
 
 ## Features
 - Built using **Electron.js** for fast performance
